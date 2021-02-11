@@ -8,9 +8,28 @@
     *   -Date- 05.02.2021
     */
     header('Content-Type: text/html; charset=utf-8');
-    include ('framework/pages.php');
-    $pages = new pages;
-    if (!isset( $_GET['page']))
+    session_start();
+    /**
+     * -D- Подключение к базе данных
+     *
+     */
+    include_once('classes/db.php');
+    $db = new db;
+    $dbResult = $db->connect(
+        'localhost',
+        'root',
+        '',
+        'client_service'
+    );
+    if (!$dbResult['success']) {
+        foreach ($dbResult['errors'] as $errMessage) {
+            print('<p class="message error">' . $errMessage . '</p>');
+        }
+        exit();
+    }
+    include_once('classes/pages.php');
+    $pages = new pages($db);
+    if (!isset($_GET['page']))
     {
         $_GET['page'] = NULL;
     }

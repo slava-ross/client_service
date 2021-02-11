@@ -17,39 +17,42 @@
 			'errors'	=> array(),		// массив ошибок в строчном виде;
 		 );
 		 */
-		public function connect ( $dbHost, $dbLogin, $dbPass, $dbName ) {
+		public function connect($dbHost, $dbLogin, $dbPass, $dbName)
+        {
 			$success = false;
 			$errors = array();
 			
-			$this->db_link = mysqli_connect( $dbHost, $dbLogin, $dbPass, $dbName );
-			if ( !$this->db_link ) {
+			$this->db_link = mysqli_connect($dbHost, $dbLogin, $dbPass, $dbName);
+			if (!$this->db_link) {
 				$errors[] = "Невозможно подключиться к базе данных. Код ошибки: ".mysqli_connect_error();
 			} else {
 				$success = true;
 				if ( !mysqli_set_charset( $this->db_link, "utf8" )) {
-					$errors[] = "Ошибка при загрузке набора символов utf8: ".mysqli_error( $this->db_link );
+					$errors[] = "Ошибка при загрузке набора символов utf8: ".mysqli_error($this->db_link);
 					exit();
 				}
 			}
 			return array(
-				'dbLink'	=> $this->db_link,
-				'success'	=> $success,
-				'errors'	=> $errors
+				'dbLink' => $this->db_link,
+				'success' => $success,
+				'errors' => $errors
 			);
 		}
 		/**
 		 * -D, Method- Завершение соединения с БД;
 		 * -V- {mysqli-link} @dbLink: линк с БД;
 		 */
-		public function disconnect ( $dbLink ) {
+		public function disconnect($dbLink)
+        {
 			mysqli_close( $this->db_link );
 		}
 		/**
 		 * -D, Method- Экранирование спецсимволов в строке запроса к БД;
 		 * -V- {String} @str: строка запроса;
 		 */
-		public function realEscape ( $str ) {
-			return mysqli_escape_string( $this->db_link, $str );
+		public function realEscape($str)
+        {
+			return mysqli_escape_string($this->db_link, $str);
 		}
 		/**
 		 * -D, Method- Запрос к БД;
@@ -65,14 +68,14 @@
 			'errors'	=> array(),		// массив ошибок в строчном виде;
 		 );
 		 */
-		public function query ( $SQL, $qType ) {
-			
+		public function query($SQL, $qType)
+        {
 			$resultArr = array();
 			$success = false;
 			$errors = array();
 			$id = NULL;
 			
-			switch( $qType ) {
+			switch ($qType) {
 				case 'insert':
 				case 'update':
 				case 'delete':
@@ -115,11 +118,10 @@
 			}
 			return array(
 				'success'	=> $success,
-				'result'	=> mysqli_affected_rows( $this->db_link ),
+				'result'	=> mysqli_affected_rows($this->db_link),
 				'id'		=> $id,
 				'resultArr'	=> $resultArr,
 				'errors'	=> $errors
 			);
 		}
 	}
-?>
