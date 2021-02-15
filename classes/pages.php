@@ -24,7 +24,7 @@ class pages
         );
         $this->getTemplate('templates/main.tpl',
             array(
-                'errorMessages' => $result['errors'],
+                //'errorMessages' => $result['errors'],
             )
         );
         $this->getTemplate('templates/footer.tpl');
@@ -40,9 +40,9 @@ class pages
                 'title'=>'Заявка на кредит'
             )
         );
-        $this->getTemplate('templates/get_credit.tpl',
+        $this->getTemplate('templates/credit.tpl',
             array(
-                'errorMessages' => $result['errors'],
+                //'errorMessages' => $result['errors'],
             )
         );
         $this->getTemplate('templates/footer.tpl');
@@ -58,9 +58,27 @@ class pages
                 'title'=>'Заявка на вклад'
             )
         );
-        $this->getTemplate('templates/get_deposite.tpl',
+        $this->getTemplate('templates/deposit.tpl',
             array(
-                'errorMessages' => $result['errors'],
+                //'errorMessages' => $result['errors'],
+            )
+        );
+        $this->getTemplate('templates/footer.tpl');
+    }
+    /**
+     *
+     *
+     */
+    private function getReportPage()
+    {
+        $this->getTemplate('templates/header.tpl',
+            array(
+                'title'=>'Отчёт'
+            )
+        );
+        $this->getTemplate('templates/report.tpl',
+            array(
+                //'errorMessages' => $result['errors'],
             )
         );
         $this->getTemplate('templates/footer.tpl');
@@ -72,15 +90,18 @@ class pages
     public function router($page)
     {
         /**
-        *   -D- Выбор метода для генерации нужной страницы;
+        *   -D- Выбор метода для генерации нужной страницы
         */
         switch ($page)
         {
-            case 'get_credit':
+            case 'credit':
                 $this->getCreditPage();
                 break;
-            case 'get_deposit':
+            case 'deposit':
                 $this->getDepositPage();
+                break;
+            case 'report':
+                $this->getReportPage();
                 break;
             default:
                 $this->index();

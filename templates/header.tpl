@@ -11,18 +11,24 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-            <a class="navbar-brand">СразуБанк</a>
-            <div id="my-nav" class="collapse navbar-collapse d-flex justify-content-between">
-                <ul class="navbar-nav mr-auto">
+            <div class="container collapse navbar-collapse">
+                <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php?page=index">Главная</a>
+                        <a class="navbar-brand">КД-Банк</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=get_credit" tabindex="-1">Заявка на кредит</a>
+                    <li class="nav-item offset-1">
+                        <a class="nav-link" href="index.php?page=main" tabindex="-1">Главная</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=get_deposit" tabindex="-1">Заявка на вклад</a>
+                    <li class="nav-item offset-1">
+                        <a class="nav-link" href="index.php?page=credit" tabindex="-1">Заявка на кредит</a>
+                    </li>
+                    <li class="nav-item offset-1">
+                        <a class="nav-link" href="index.php?page=deposit" tabindex="-1">Заявка на вклад</a>
+                    </li>
+                    <li class="nav-item offset-1">
+                        <a class="nav-link" href="index.php?page=report" tabindex="-1">Отчёт</a>
                     </li>
                 </ul>
             </div>
         </nav>
+        <div class="container container-main">
