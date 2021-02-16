@@ -32,7 +32,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container container-main">
+        <div class="container container-main col-sm-3">
 <?php
     if (array_key_exists('errors', $vars)) {
         foreach( $vars['errors'] as $errorMsg ) {

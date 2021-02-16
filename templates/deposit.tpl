@@ -23,11 +23,11 @@
         <div class="form-group-header">Выплата процентов:</div>
         <div class="form-check">
             <label class="form-check-label" for="reinvest-monthly">Ежемесячная капитализация</label>
-            <input id="reinvest-monthly" class="form-check-input" type="radio" name="reinvest" value="monthly" <?php if (isset($_POST['reinvest']) && $_POST['reinvest' === 'monthly']) print 'checked' ?> >
+            <input id="reinvest-monthly" class="form-check-input" type="radio" name="reinvest" value="monthly" <?php if (isset($_POST['reinvest'])) if ($_POST['reinvest'] === 'monthly') print 'checked' ?> >
         </div>
         <div class="form-check">
             <label class="form-check-label" for="reinvest-at-end">В конце срока</label>
-            <input id="reinvest-at-end" class="form-check-input" type="radio" name="reinvest" value="at_end" <?php if (isset($_POST['reinvest']) && $_POST['reinvest' === 'at_end']) print 'checked' ?> >
+            <input id="reinvest-at-end" class="form-check-input" type="radio" name="reinvest" value="at_end" <?php if (isset($_POST['reinvest'])) if ($_POST['reinvest'] === 'at_end') print 'checked' ?> >
         </div>
     </div>
     <input type="submit" name="submit" value="Дальше" class="btn btn-outline-success">

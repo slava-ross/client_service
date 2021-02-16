@@ -18,11 +18,11 @@
     <!-- Выбор типа возврата долга -->
     <div class="form-group">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="payout_type" value="annuity" id="payout-type-annuity" <?php if (isset($_POST['payout_type']) && $_POST['payout_type' === 'annuity']) print 'checked' ?> >
+            <input class="form-check-input" type="radio" name="payout_type" value="annuity" id="payout-type-annuity" <?php if (isset($_POST['payout_type'])) if ($_POST['payout_type'] === 'annuity') print 'checked' ?> >
             <label class="form-check-label" for="payout-type-annuity">Аннуитетный</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="payout_type" value="different" id="payout-type-different" <?php if (isset($_POST['payout_type']) && $_POST['payout_type' === 'different']) print 'checked' ?> >
+            <input class="form-check-input" type="radio" name="payout_type" value="different" id="payout-type-different" <?php if (isset($_POST['payout_type'])) if ($_POST['payout_type'] === 'different') print 'checked' ?> >
             <label class="form-check-label" for="payout-type-different">Дифференцированный</label>
         </div>
     </div>
