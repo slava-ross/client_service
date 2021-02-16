@@ -1,86 +1,30 @@
-@extends('layouts.layout', ['title' => 'Создание нового поста'])
-@section('content')
-<form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <h3>Создать пост</h3>
-    @include('posts.parts.form')
-    <input type="submit" value="Создать пост" class="btn btn-outline-success">
-</form>
-@endsection
-
-
-
-<form id="create-comment-form" data-attr="{{ route('comment.store') }}" method="post" action="" enctype="multipart/form-data">
-    @csrf
-    @include('comments.parts.form')
-
-
-<div class="modal-content">
-    <div class="modal-header">
-        <h2 class="modal-title" id="comment-modal-label">{{ $modal_title }}</h2>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<h1>Заявка на кредит</h1>
+<form method="post">
+    <!-- Дата открытия кредита -->
+    <div class="form-group">
+        <label for="datepicker">Дата открытия кредита:</label>
+        <input id="datepicker" name="open_date" type="text" class="form-control" value="<?php if (isset($_POST['open_date'])) print $_POST['open_date'] ?>" required>
     </div>
-    <div class="modal-body" id="comment-modal-body">
-        {{-- Заголовок отзыва --}}
-        <div class="form-group">
-            <label for="title">Заголовок:</label>
-            <input name="title" id="title" type="text" class="form-control" required value="{{ $comment->title ?? '' }}">
+    <!-- Срок кредитования -->
+    <div class="form-group">
+        <label for="term">Срок кредитования (1-36 мес.):</label>
+        <input id="term" name="term" type="number" min="1" max="36" step="1" class="form-control" value="<?php if (isset($_POST['term'])) print $_POST['term'] ?>" required>
+    </div>
+    <!-- Кредитный лимит -->
+    <div class="form-group">
+        <label for="amount">Сумма (руб.):</label>
+        <input id="amount" name="amount" type="number" min="0" class="form-control" value="<?php if (isset($_POST['amount'])) print $_POST['amount'] ?>" required>
+    </div>
+    <!-- Выбор типа возврата долга -->
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="payout_type" value="annuity" id="payout-type-annuity" <?php if (isset($_POST['payout_type']) && $_POST['payout_type' === 'annuity']) print 'checked' ?> >
+            <label class="form-check-label" for="payout-type-annuity">Аннуитетный</label>
         </div>
-        {{-- Текст отзыва --}}
-        <div class="form-group">
-            <label for="comment_text">Текст отзыва:</label>
-            <textarea name="comment_text" id="comment_text" rows="8" class="form-control" required>{{ $comment->comment_text ?? '' }}</textarea>
-        </div>
-        {{-- Города/города отзыва --}}
-        @if($new_comment)
-        <div class="form-group city-holder">
-            <ul id="city-shell" class="city-shell"></ul>
-        </div>
-        <div class="form-group">
-            <label for="cities-data">Выберите один или несколько городов (Нет выбора - все города):</label>
-            <input id="cities-data" class="city-multiple form-control" type="search" placeholder="Начните писать ваш город ...">
-            <select id="city-select" class="city-select" name="cities[]" multiple hidden>
-            </select>
-        </div>
-        @endif
-        {{-- Рейтинг --}}
-        <div class="form-group">
-            <label for="rating">Рейтинг (1-5):</label>
-            <input id="rating" name="rating" type="number" step="1" min="1" max="5" class="form-control" value="{{ $comment->rating ?? '' }}" required>
-        </div>
-        {{-- Изображение --}}
-        @if(!$new_comment)
-        <div class="form-group">
-            <input type="checkbox" id="img-checkbox" name="img_leave" checked>
-            <label for="img-checkbox"> оставить изображение без изменения</label>
-        </div>
-        @endif
-        <div id="img-input" class="form-group {{ $new_comment ? '' : 'd-none' }}">
-            <label for="image">Прикрепите изображение (по желанию):</label><br>
-            <input name="img" id="image" type="file">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="payout_type" value="different" id="payout-type-different" <?php if (isset($_POST['payout_type']) && $_POST['payout_type' === 'different']) print 'checked' ?> >
+            <label class="form-check-label" for="payout-type-different">Дифференцированный</label>
         </div>
     </div>
-    <div class="modal-footer">
-        <button id="{{ $button_id }}" class="btn btn-outline-success">{{ $button_text }}</button>
-    </div>
-</div>
-</form>
-
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <input type="submit" name="submit" value="Дальше" class="btn btn-outline-success">
 </form>

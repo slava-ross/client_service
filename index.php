@@ -18,7 +18,7 @@
     $dbResult = $db->connect(
         'localhost',
         'root',
-        '',
+        'q1Q!w2W@e3E#',
         'client_service'
     );
     if (!$dbResult['success']) {
